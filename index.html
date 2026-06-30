@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Perfume Collection - Profil & Karakter Aroma</title>
+    <style>
+        :root {
+            --bg-color: #0b0507;
+            --primary: #d62828;
+            --secondary: #f77f00;
+            --accent: #fcbf49;
+            --pink: #f72585;
+            --text-light: #fdf0d5;
+            --glow-white: 0 0 15px rgba(255, 255, 255, 0.7), 0 0 25px rgba(247, 37, 133, 0.4);
+            --card-glow: 0 10px 30px rgba(214, 40, 40, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Playfair Display', 'Georgia', serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            line-height: 1.6;
+            padding: 20px;
+            background-image: radial-gradient(circle at 50% 20%, #2b0c16 0%, #0b0507 80%);
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(247, 127, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #fff;
+            text-shadow: var(--glow-white);
+            margin-bottom: 15px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--accent);
+            max-width: 700px;
+            margin: 0 auto;
+            font-style: italic;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Grid Layout */
+        .perfume-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        /* Card Style - Portrait Oriented */
+        .perfume-card {
+            background: linear-gradient(135deg, #1c0a10 0%, #0f0508 100%);
+            border: 1px solid rgba(247, 37, 133, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-glow);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .perfume-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 15px 40px rgba(247, 127, 0, 0.3), var(--glow-white);
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 450px; /* Enforces portrait aspect ratio */
+            overflow: hidden;
+            background-color: #15070c;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .perfume-card:hover .image-container img {
+            transform: scale(1.05);
+        }
+
+        .brand-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(214, 40, 40, 0.85);
+            padding: 5px 15px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 20px;
+            border: 1px solid var(--accent);
+            backdrop-filter: blur(5px);
+        }
+
+        .card-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .perfume-name {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+        }
+
+        .english-title {
+            font-size: 0.95rem;
+            color: var(--pink);
+            font-style: italic;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .character-tag {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        .description {
+            font-size: 1rem;
+            color: #e0d0d5;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .info-section {
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 15px;
+        }
+
+        .info-title {
+            font-size: 1rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .info-text {
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            color: #f0e5e8;
+        }
+
+        /* Technical Info Expansion */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px solid rgba(247, 127, 0, 0.1);
+        }
+
+        .tech-item {
+            text-align: center;
+        }
+
+        .tech-label {
+            font-size: 0.75rem;
+            color: var(--pink);
+            text-transform: uppercase;
+        }
+
+        .tech-val {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        /* Troubleshooting Section */
+        .trouble-box {
+            background: rgba(214, 40, 40, 0.1);
+            border: 1px solid rgba(214, 40, 40, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .trouble-box strong {
+            color: var(--secondary);
+        }
+
+        /* Guide / Summary Section */
+        .guide-section {
+            background: linear-gradient(135deg, #2b0c16 0%, #1c0a10 100%);
+            border: 2px solid var(--secondary);
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 60px;
+            box-shadow: var(--glow-white);
+        }
+
+        .guide-section h2 {
+            font-size: 2rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--pink);
+        }
+
+        .guide-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .guide-list li {
+            background: rgba(0,0,0,0.3);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--pink);
+        }
+
+        .guide-list strong {
+            color: var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            margin-top: 60px;
+            font-size: 0.9rem;
+            color: rgba(253, 240, 213, 0.5);
+            border-top: 1px solid rgba(247, 127, 0, 0.1);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .perfume-grid { grid-template-columns: 1fr; }
+            .image-container { height: 400px; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>Merek & Profil Aroma Parfum Modern</h1>
+        <p>Wewangian bukan sekadar cairan beraroma, melainkan representasi identitas, suasana hati, dan impresi yang ingin ditinggalkan oleh penggunanya.</p>
+    </header>
+
+    <div class="container">
+        <div class="perfume-grid">
+
+            <div class="perfume-card">
+                <div class="image-container">
+                    <span class="brand-badge">Velixir</span>
+                    <img src="Asteria.jpg" alt="Asteria">
+                </div>
+                <div class="card-content">
+                    <h2 class="perfume-name">Asteria</h2>
+                    <p class="english-title">Product Classification: Mystical Ethereal Eau de Parfum</p>
+                    <p class="character-tag">Mystical, Ethereal, & Serene</p>
+                    <p class="description">Membawa nuansa aroma yang terinspirasi dari keindahan langit malam atau rasi bintang. Memadukan unsur floral yang lembut namun dikunci dengan aroma woody atau musk yang dalam, menciptakan kesan elegan yang tidak terlalu mencolok (understated elegance).</p>
+                    
+                    <div class="info-section">
+                        <p class="info-title">Fungsi & Fungsi Utama</p>
+                        <p class="info-text">Sangat cocok untuk penggunaan di malam hari, acara formal, meningkatkan impresi keanggunan yang misterius dan menenangkan jiwa.</p>
+                    </div>
+
+                    <div class="trouble-box">
+                        <p class="info-title">Kerusakan & Solusi Umum</p>
+                        <p class="info-text"><strong>Masalah:</strong> Oksidasi aroma floral akibat paparan cahaya matahari langsung.<br><strong>Solusi:</strong> Simpan di tempat gelap dan sejuk (lemari pakaian/kotak original).</p>
+                    </div>
+
+                    <div class="tech-grid">
+                        <div class="tech-item"><span class="tech-label">Kapasitas</span><br><span class="tech-val">50ml / 100ml</span></div>
+                        <div class="tech-item"><span class="tech-label">Kualitas</span><br><span class="tech-val">Premium (30% Oils)</span></div>
+                        <div class="tech-item"><span class="tech-label">Kecepatan</span><br><span class="tech-val">Sillage 3-5 Jam</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="perfume-card">
+                <div class="image-container">
+                    <span class="brand-badge">Mykonos</span>
+                    <img src="Monaco Royale.jpg" alt="Monaco Royale">
+                </div>
+                <div class="card-content">
+                    <h2 class="perfume-name">Monaco Royale</h2>
+                    <p class="english-title">Product Classification: Opulent Amber & Warm Spicy Extrait de Parfum</p>
+                    <p class="character-tag">Luxury, Opulent, & High-Profile</p>
+                    <p class="description">Memancarkan kemewahan jet-set Eropa. Aromanya cenderung kaya (rich) dengan perpaduan amber, rempah manis hangat (warm spicy), atau sentuhan gourmand yang manis dan tahan lama dengan proyeksi yang sangat kuat.</p>
+                    
+                    <div class="info-section">
+                        <p class="info-title">Fungsi & Fungsi Utama</p>
+                        <p class="info-text">Menghadiri pesta formal, pertemuan bisnis penting, atau momen di mana Anda ingin tampil glamor dan menjadi pusat perhatian utama.</p>
+                    </div>
+
+                    <div class="trouble-box">
+                        <p class="info-title">Kerusakan & Solusi Umum</p>
+                        <p class="info-text"><strong>Masalah:</strong> Penyumbatan atomizer (spray) karena konsentrasi minyak atsiri yang pekat.<br><strong>Solusi:</strong> Bersihkan ujung atomizer dengan alkohol atau bilas menggunakan air hangat.</p>
+                    </div>
+
+                    <div class="tech-grid">
+                        <div class="tech-item"><span class="tech-label">Kapasitas</span><br><span class="tech-val">100ml Only</span></div>
+                        <div class="tech-item"><span class="tech-label">Kualitas</span><br><span class="tech-val">Luxury Extrait</span></div>
+                        <div class="tech-item"><span class="tech-label">Kecepatan</span><br><span class="tech-val">Projection 8+ Jam</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="perfume-card">
+                <div class="image-container">
+                    <span class="brand-badge">Octarine</span>
+                    <img src="Noctis Obscura.jpg" alt="Noctis Obscura">
+                </div>
+                <div class="card-content">
+                    <h2 class="perfume-name">Noctis Obscura</h2>
+                    <p class="english-title">Product Classification: Dark Leather & Incense Bold Fragrance</p>
+                    <p class="character-tag">Dark, Bold, & Enigmatic</p>
+                    <p class="description">Menonjolkan aroma pekat malam hari yang intens. Didominasi oleh unsur leather (kulit), incense (asap modern), tembakau, atau dark patchouli yang memikat, tegas, dan penuh misteri.</p>
+                    
+                    <div class="info-section">
+                        <p class="info-title">Fungsi & Fungsi Utama</p>
+                        <p class="info-text">Sangat pas untuk karakter personal yang berani tampil beda, penyuka gaya kasual-edgy, atau aktivitas nightout dan konser malam.</p>
+                    </div>
+
+                    <div class="trouble-box">
+                        <p class="info-title">Kerusakan & Solusi Umum</p>
+                        <p class="info-text"><strong>Masalah:</strong> Perubahan warna cairan dan penguapan alkohol berlebih akibat botol tidak rapat.<br><strong>Solusi:</strong> Pastikan tutup magnetis/klik terpasang sempurna setelah pemakaian.</p>
+                    </div>
+
+                    <div class="tech-grid">
+                        <div class="tech-item"><span class="tech-label">Kapasitas</span><br><span class="tech-val">30ml / 50ml</span></div>
+                        <div class="tech-item"><span class="tech-label">Kualitas</span><br><span class="tech-val">Intense EDP</span></div>
+                        <div class="tech-item"><span class="tech-label">Kecepatan</span><br><span class="tech-val">Longevity 6-8 Jam</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="perfume-card">
+                <div class="image-container">
+                    <span class="brand-badge">Scarlett</span>
+                    <img src="Velvet Rouge.jpg" alt="Velvet Rouge">
+                </div>
+                <div class="card-content">
+                    <h2 class="perfume-name">Velvet Rouge</h2>
+                    <p class="english-title">Product Classification: Crimson Rose & Sweet Vanilla Sensual Mist</p>
+                    <p class="character-tag">Sensual, Passionate, & Sweet</p>
+                    <p class="description">Mengindikasikan aroma beludru merah yang lembut namun memiliki daya pikat kuat. Berfokus pada perpaduan mawar merah (crimson rose), buah beri manis (fruity-sweet), dan sentuhan kehangatan vanilla yang menggoda.</p>
+                    
+                    <div class="info-section">
+                        <p class="info-title">Fungsi & Fungsi Utama</p>
+                        <p class="info-text">Pilihan ideal untuk date night (kencan malam), momen romantis bersama pasangan, atau penggunaan harian feminin yang memikat.</p>
+                    </div>
+
+                    <div class="trouble-box">
+                        <p class="info-title">Kerusakan & Solusi Umum</p>
+                        <p class="info-text"><strong>Masalah:</strong> Top notes buah beri memudar terlalu cepat akibat fluktuasi suhu ruangan.<br><strong>Solusi:</strong> Hindari menyimpan botol parfum di dalam kamar mandi.</p>
+                    </div>
+
+                    <div class="tech-grid">
+                        <div class="tech-item"><span class="tech-label">Kapasitas</span><br><span class="tech-val">30ml / 100ml</span></div>
+                        <div class="tech-item"><span class="tech-label">Kualitas</span><br><span class="tech-val">Soft Fine Fragrance</span></div>
+                        <div class="tech-item"><span class="tech-label">Kecepatan</span><br><span class="tech-val">Sillage 4 Jam</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="perfume-card">
+                <div class="image-container">
+                    <span class="brand-badge">Braven</span>
+                    <img src="Coll Wootah.jpg" alt="Coll Wootah">
+                </div>
+                <div class="card-content">
+                    <h2 class="perfume-name">Coll Wootah</h2>
+                    <p class="english-title">Product Classification: Fresh Aquatic & Energetic Sporty Eau de Cologne</p>
+                    <p class="character-tag">Fresh, Aquatic, & Energetic</p>
+                    <p class="description">Menonjolkan kesegaran laut (marine notes), mint, serta sentuhan jeruk (citrus) yang memberikan efek segar instan layaknya selesai mandi (clean and soapy profile) yang penuh energi.</p>
+                    
+                    <div class="info-section">
+                        <p class="info-title">Fungsi & Fungsi Utama</p>
+                        <p class="info-text">Sangat baik untuk aktivitas luar ruangan, setelah berolahraga, penggunaan kasual sehari-hari pada cuaca panas agar tubuh tetap segar.</p>
+                    </div>
+
+                    <div class="trouble-box">
+                        <p class="info-title">Kerusakan & Solusi Umum</p>
+                        <p class="info-text"><strong>Masalah:</strong> Degradasi notes citrus karena teroksidasi udara luar dalam botol semi-longgar.<br><strong>Solusi:</strong> Gunakan dalam waktu 12-18 bulan setelah segel botol dibuka.</p>
+                    </div>
+
+                    <div class="tech-grid">
+                        <div class="tech-item"><span class="tech-label">Kapasitas</span><br><span class="tech-val">60ml / 120ml</span></div>
+                        <div class="tech-item"><span class="tech-label">Kualitas</span><br><span class="tech-val">Fresh Daily Grade</span></div>
+                        <div class="tech-item"><span class="tech-label">Kecepatan</span><br><span class="tech-val">Burst Freshness 2-3J</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="guide-section">
+            <h2>Ringkasan Strategi Pemilihan (Guide)</h2>
+            <ul class="guide-list">
+                <li>Mencari kesegaran harian / clean &rarr; <strong>Braven - Coll Wootah</strong></li>
+                <li>Ingin tampil manis dan romantis &rarr; <strong>Scarlett - Velvet Rouge</strong></li>
+                <li>Ingin kesan mewah dan eksklusif &rarr; <strong>Mykonos - Monaco Royale</strong></li>
+                <li>Menyukai nuansa misterius yang menenangkan &rarr; <strong>Velixir - Asteria</strong></li>
+                <li>Ingin tampil berani, tegas, dan bold &rarr; <strong>Octarine - Noctis Obscura</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Brand Parfum Modern. Didesain secara Elegan dan Responsif.</p>
+    </footer>
+
+</body>
+</html>
